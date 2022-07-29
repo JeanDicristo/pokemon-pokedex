@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="./Css/style.css">
-    <title>Pokédex</title>
+    <title>Créer un pokémon</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Home</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -33,26 +33,28 @@
             </div>
         </nav>
     </header>
-    <?php
-    require_once("./PokemonsManager.php");
-    $manager = new PokemonsManager();
-    $pokemons = $manager->getAll();
-    ?>
+
     <main class="container">
-        <section>
-            <?php foreach ($pokemons as $pokemon) : ?>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="<?= $pokemon->getName() ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $pokemon->getNumber() ?> # <?= $pokemon->getName() ?></h5>
-                        <p class="card-text"><?= $pokemon->getDescription() ?></p>
-                        <a href="#" class="btn btn-warning"><img src="./Images/Icons/icon_modifier.png" alt="img bouton modifier" width="20px"></a>
-                    </div>
-                </div>
-            <?php endforeach ?>
-        </section>
-            </br>
-                <a href="./create.php" class="btn btn-warning">Créer un pokémon</a>
+        <form action="" method="post" enctype="multipart/form-data">
+            <label for="number"class="form-label">Numéro</label>
+            <input type="number" name="number" placeholder="le numero du pokémon" id="number" class="form-control">
+
+            <label for="name"class="form-label">Nom du pokémon</label>
+            <input type="text" name="name" placeholder="le nom du pokémon" id="name" class="form-control" minlength="3" maxlength="40">
+
+            <label for="name"class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="6" placeholder="La description du pokémon" minlength="10" maxlength="1000"></textarea>
+
+            <label for="type1"class="form-label">Type</label>
+            <!--
+                <select name="type1" id="type1"class="form-select">
+                <option value=""></option>
+            -->
+        <label for="image" class="form-label">Image</label>
+        <input type="file" name="image" id="image" class="form-control">
+</br>
+        <input type="submit" class="btn btn-success mt-3" value="Créer">
+        </form>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

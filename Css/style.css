@@ -11,7 +11,7 @@ nav {
     color: whitesmoke;
 }
 
-main {
+section {
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
