@@ -5,29 +5,27 @@ class Type {
     private $name;
     private $color;
 
+    // $type = new Type(["id" => 1, "name" => "Electrik", "color" => "yellow"])
+
     public function __construct(array $data) {
         $this->hydrate($data);
     }
 
-    public function hydrate(array $data) {
+    public function hydrate(array $data): void {
         foreach ($data as $key => $value) {
-          // On récupère le nom du setter correspondant à l'attribut
-          $method = 'set'.ucfirst($key);
-              
-          // Si le setter correspondant existe.
-          if (method_exists($this, $method)) {
-            // On appelle le setter
-            $this->$method($value);
-          }
+            $method = "set" . ucfirst($key); // setId, setName, setColor
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
         }
-      }
-      
+    }
 
-    /** STAR - GETTERS AND SETTERS **/
+
     public function getId_type()
     {
         return $this->id_type;
     }
+
 
     public function setId_type($id_type)
     {
@@ -42,7 +40,7 @@ class Type {
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
 

@@ -20,7 +20,7 @@ class PokemonsManager {
 
     public function create(Pokemon $pokemon)
     {
-        $req = $this->db->prepare("INSERT INTO `pokemon` (number, name, description, type1, type2) VALUE (:number, :name, :description, :type1, :type2");
+        $req = $this->db->prepare("INSERT INTO `pokemon` (number, name, description, type1, type2) VALUE (:number, :name, :description, :type1, :type2)");
 
         $req->bindValue(":number", $pokemon->getNumber(), PDO::PARAM_INT);
         $req->bindValue(":name", $pokemon->getName(), PDO::PARAM_STR);
@@ -33,7 +33,7 @@ class PokemonsManager {
 
     public function get(int $id_pokemon)
     {
-        $req = $this->db->prepare("SELECT * FROM `pokemon` WHERE id_poekmon = :id_pokemon");
+        $req = $this->db->prepare("SELECT * FROM `pokemon` WHERE id_pokemon = :id_pokemon");
         $req->bindValue(":id_pokemon", $id_pokemon, PDO::PARAM_INT);
         $data = $req->fetch();
         $pokemon = new Pokemon($data);
@@ -49,8 +49,8 @@ class PokemonsManager {
             $pokemon = new Pokemon($data);
             $pokemons[] = $pokemon;
         }
-        $req->closeCursor()
-;        return $pokemons;
+        $req->closeCursor();        
+        return $pokemons;
     }
 
     public function getAllByString(string $input)
@@ -100,5 +100,5 @@ class PokemonsManager {
         $req = $this->db->prepare("DELETE FROM `pokemon` WHERE id_pokemon = :id_pokemon");
         $req->bindValue(":id_pokemon", $id_pokemon, PDO::PARAM_INT);
         $req->execute();
-}
+    }
 }

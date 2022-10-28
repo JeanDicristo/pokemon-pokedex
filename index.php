@@ -42,7 +42,7 @@
         <section>
             <?php foreach ($pokemons as $pokemon) : ?>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="<?= $pokemon->getName() ?>">
+                    <img src="<?= $pokemon->getImage() ?>" class="card-img-top" alt="<?= $pokemon->getName() ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $pokemon->getNumber() ?> # <?= $pokemon->getName() ?></h5>
                         <p class="card-text"><?= $pokemon->getDescription() ?></p>
